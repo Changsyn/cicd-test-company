@@ -1,0 +1,22 @@
+name: Multi Shell
+on: [push]
+defaults:  # Workflow Level defaults
+  run:
+    shell: pwsh
+jobs:
+  Multi-Shell:
+    runs-on: windows-latest
+    steps:
+      - name: 시스템 정보 보기 uname -a (리눅스)
+        shell: bash
+        run: uname -a
+      - name: Get-ComputerInfo 실행
+        run: Get-ComputerInfo
+      - name: sys.version 출력
+        shell: python
+        run: |
+          import sys
+          print(sys.version)
+      - name: process version 출력
+        shell: node {0}
+        run: console.log(process.version)
